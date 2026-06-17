@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     EDIT THESE: title, description, and the og:url below.
+     ============================================================ -->
+<title>Leighton — Gene delivery, designed with biological language models</title>
+<meta name="description" content="Leighton designs gene-delivery systems with biological language models.">
+<meta name="theme-color" content="#F4F6F2">
+
+<!-- Open Graph (controls how the link looks when shared) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Leighton">
+<meta property="og:description" content="Gene delivery, designed with biological language models.">
+<meta property="og:url" content="https://leighton.bio">
+<meta name="twitter:card" content="summary">
+
+<!-- Inline SVG favicon: "[•]" — a delivered payload -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2313211A'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='17' font-weight='600' text-anchor='middle' fill='%23DBE1D7'%3E%5B%3C/text%3E%3Ctext x='16' y='22' font-family='monospace' font-size='17' font-weight='600' text-anchor='middle' fill='%2330D96E'%3E%E2%80%A2%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#F4F6F2;
+    --ink:#13211A;
+    --muted:#5E6E64;
+    --faint:#9AA69C;
+    --line:#DBE1D7;
+    --accent:#1C7A4C;
+    --signal:#13A551;
+    --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --serif:'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{ margin:0; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--serif);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:clamp(20px, 4vw, 44px);
+    line-height:1.5;
+  }
+
+  a{ color:inherit; }
+
+  /* ---- top bar ---- */
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    padding-bottom:clamp(40px, 9vh, 96px);
+    border-bottom:1px solid transparent; /* spacing only */
+  }
+  .brand{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:.01em;
+    display:inline-flex;
+    align-items:center;
+    gap:.5ch;
+  }
+  .mark{ color:var(--ink); font-weight:600; }
+  .mark .dot{
+    color:var(--signal);
+    text-shadow:0 0 8px rgba(19,165,81,.55);
+  }
+  .meta{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--faint);
+    text-align:right;
+  }
+
+  /* ---- hero ---- */
+  .hero{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    max-width:880px;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-weight:500;
+    font-size:.74rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 clamp(20px,3vh,30px);
+  }
+  h1{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(2.05rem, 5.4vw, 3.55rem);
+    line-height:1.1;
+    letter-spacing:-.012em;
+    margin:0 0 clamp(22px,3.4vh,34px);
+    max-width:17ch;
+  }
+  h1 .em{
+    font-style:italic;
+    color:var(--accent);
+  }
+  .lede{
+    font-size:clamp(1.05rem, 2.1vw, 1.28rem);
+    line-height:1.58;
+    color:var(--muted);
+    margin:0;
+    max-width:56ch;
+  }
+
+  /* ---- signature: the sequence strip ---- */
+  .seq-wrap{ margin:clamp(40px,6vh,64px) 0 clamp(30px,4vh,40px); }
+  .seq{
+    font-family:var(--mono);
+    font-size:clamp(.82rem,1.5vw,.98rem);
+    letter-spacing:.22em;
+    white-space:nowrap;
+    overflow:hidden;
+    color:var(--faint);
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+            mask-image:linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  }
+  .seq .end{ color:var(--line); }
+  .seq .br{ color:var(--accent); font-weight:600; letter-spacing:.1em; }
+  .seq .payload{
+    color:var(--signal);
+    font-weight:600;
+    letter-spacing:.16em;
+    text-shadow:0 0 0 rgba(19,165,81,0);
+    animation:glow 3.6s ease-in-out infinite alternate;
+  }
+  @keyframes glow{
+    from{ text-shadow:0 0 4px rgba(19,165,81,.20); }
+    to{   text-shadow:0 0 14px rgba(19,165,81,.55); }
+  }
+  .seq-cap{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.1em;
+    color:var(--muted);
+    margin-top:14px;
+  }
+  .seq-cap .hl{ color:var(--accent); }
+
+  /* ---- contact ---- */
+  .contact a{
+    font-family:var(--mono);
+    font-weight:500;
+    font-size:.96rem;
+    letter-spacing:.02em;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding-bottom:2px;
+    transition:border-color .2s ease;
+  }
+  .contact a:hover{ border-color:var(--accent); }
+  .contact a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:4px;
+    border-radius:2px;
+  }
+
+  /* ---- footer ---- */
+  footer{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:clamp(48px,8vh,90px);
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--faint);
+  }
+  footer a{ text-decoration:none; }
+  footer a:hover{ color:var(--muted); }
+
+  @media (max-width:560px){
+    .meta{ display:none; }
+    .seq{ letter-spacing:.16em; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .seq .payload{ animation:none; text-shadow:0 0 10px rgba(19,165,81,.4); }
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <!-- EDIT: company name -->
+    <span class="brand"><span class="mark">[<span class="dot">&bull;</span>]</span> Leighton</span>
+    <!-- EDIT: location / status line -->
+    <span class="meta">New York<br>Est. 2026</span>
+  </header>
+
+  <main class="hero">
+    <!-- EDIT: one-line positioning -->
+    <p class="eyebrow">Gene delivery &middot; AI-native</p>
+
+    <!-- EDIT: the thesis -->
+    <h1>Genetic medicine's hardest problem isn't the gene. It's getting it into <span class="em">the cell</span>.</h1>
+
+    <!-- EDIT: what you're building -->
+    <p class="lede">Leighton designs the delivery layer for genetic medicine. We train biological language models on the sequence, structure, and function of nature's delivery machinery — engineering vectors that reach the cells current methods can't.</p>
+
+    <div class="seq-wrap">
+      <div class="seq" aria-hidden="true">
+        <span class="end">5&prime;&mdash;</span> A G C T A C G G T A
+        <span class="br">[</span> <span class="payload">GENE&nbsp;OF&nbsp;INTEREST</span> <span class="br">]</span>
+        T C A G G C A T G C A <span class="end">&mdash;3&prime;</span>
+      </div>
+      <!-- EDIT: differentiator caption -->
+      <p class="seq-cap">We design <span class="hl">the carrier</span>, not the cargo.</p>
+    </div>
+
+    <p class="contact">
+      <!-- EDIT: contact email (your Google Workspace address on leighton.bio) -->
+      <a href="mailto:hello@leighton.bio">hello@leighton.bio &nbsp;&rarr;</a>
+    </p>
+  </main>
+
+  <footer>
+    <span>&copy; 2026 Leighton</span>
+    <a href="https://leighton.bio">leighton.bio</a>
+  </footer>
+
+</body>
+</html>
+

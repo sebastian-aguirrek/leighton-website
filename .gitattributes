@@ -1,0 +1,13 @@
+# Handle text files automatically
+* text=auto
+
+# Force Markdown files to use LF (Linux format)
+*.md text eol=lf
+*.txt text eol=lf
+*.html text eol=lf
+*.py text eol=lf
+
+
+# Explicitly protect PDFs from being modified
+*.pdf binary
+*.png binary
